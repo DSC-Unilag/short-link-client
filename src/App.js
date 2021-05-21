@@ -10,6 +10,7 @@ import Signup from './screens/Signup'
 import Dashboard from './screens/Dashboard'
 import NotFound from './screens/NotFound'
 import EventEmitter from 'events';
+import './App.css'
 
 export const event = new EventEmitter();
 
