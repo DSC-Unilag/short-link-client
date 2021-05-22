@@ -4,11 +4,11 @@ import {
   Route,
   useHistory
 } from "react-router-dom"
-import Home from './screens/Home'
-import Signin from './screens/Signin'
-import Signup from './screens/Signup'
-import Dashboard from './screens/Dashboard'
-import NotFound from './screens/NotFound'
+import Home from './screens/Home/Home'
+import Signin from './screens/Signin/Signin'
+import Signup from './screens/Signup/Signup'
+import Dashboard from './screens/Dashboard/Dashboard'
+import NotFound from './screens/NotFound/NotFound'
 import EventEmitter from 'events';
 import './App.css'
 

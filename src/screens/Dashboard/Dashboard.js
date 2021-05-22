@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
-import Navbar from '../components/Navbar'
-import { createLink, deleteLink, editLink, getLinks } from '../utils/links'
-import {Flash} from '../components/Flash/flash'
+import Navbar from '../../components/Navbar'
+import { createLink, deleteLink, editLink, getLinks } from '../../utils/links'
+import {Flash} from '../../components/Flash/flash'
 
 const Dashboard = () => {
   const history = useHistory()

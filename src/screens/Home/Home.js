@@ -1,5 +1,6 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from '../../components/Navbar'
+import {Flash} from '../../components/Flash/flash'
 import { useMediaQuery } from "react-responsive";
 import { MdHome } from "react-icons/md";
 import { MdLink } from "react-icons/md";
@@ -49,7 +50,8 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      Home Page
+      <Flash />
+      <div>Home Page</div>
       <main>
         <div className="main" style={main}>
           <div>
@@ -73,7 +75,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div class="green-nav">
+        <div className="green-nav">
           <div className="short-links" style={shortlinks}>
             SHORTLINKS
           </div>

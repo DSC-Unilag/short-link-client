@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom"
-import { getToken } from "../utils/auth"
-import Navbar from '../components/Navbar'
-import { Flash } from "../components/Flash/flash"
+import { getToken } from "../../utils/auth"
+import Navbar from '../../components/Navbar'
+import { Flash } from "../../components/Flash/flash"
 import { useMediaQuery } from "react-responsive";
 
 const Signin = () => {
