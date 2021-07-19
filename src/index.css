@@ -1,3 +1,8 @@
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,14 +10,42 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100vh;
+  /* background-color: red; */
 }
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+:root {
+  --theme-green: #34A853;
+}
+
+/* general input styles */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+.input-group input, .input-group textarea {
+  border: 1px solid rgba(0, 0, 0, 0.137);
+  width: 100%;
+}
+
+button {
+  border: none;
 }

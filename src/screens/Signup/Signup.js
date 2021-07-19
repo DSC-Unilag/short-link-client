@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Signup = () => {
   const history = useHistory()
-  if(localStorage.getItem('token')) {
+  if (localStorage.getItem('token')) {
     setTimeout(() => {
       window.flash('You are logged in', 'warning')
     }, 100)
@@ -20,8 +20,8 @@ const Signup = () => {
     if (!email || !name || !password) window.flash('All fields are required', 'error')
     else {
       try {
-        await createUser({name, email, password})
-        let user = await getToken({email, password})
+        await createUser({ name, email, password })
+        let user = await getToken({ email, password })
         localStorage.setItem('token', user.data.token)
         localStorage.setItem('name', user.data.user.name)
         localStorage.setItem('email', user.data.user.email)
@@ -31,8 +31,8 @@ const Signup = () => {
         history.push('/dashboard')
       } catch (error) {
         console.log(error.message)
-        error.message = 'Request failed with status code 409' ? 
-          window.flash('Email chosen', 'error') : 
+        error.message = 'Request failed with status code 409' ?
+          window.flash('Email chosen', 'error') :
           window.flash(error.message, 'error')
       }
     }
@@ -49,33 +49,44 @@ const Signup = () => {
   }
 
   return (
-    <div>
+    <>
       <Navbar />
       <Flash />
-      Signup Page
-      <form action="" onSubmit={handleClick} style={formWidth}>
-        {/* Name */}
-        <div>
-          <label htmlFor="name">Full Name:  </label>
-          <input type="name" name="name" />
-        </div>
+      <main>
+        <div className="signup_main-content auth-page">
+        <h1>Sign up</h1>
+        <div className="auth-options">
+            <a>Continue with facebook</a>
+            <a>Continue with Google</a>
+          </div>
+          
+          <span aria-hidden="true" style={{marginBottom: '18px'}}>OR</span>
 
-        {/* Email */}
-        <div>
-          <label htmlFor="email">Email:  </label>
-          <input type="email" name="email" />
-        </div>
+        <form action="" onSubmit={handleClick} style={formWidth}>
+          {/* Name */}
+          <div className="input-group">
+            <label htmlFor="name">Full Name:  </label>
+            <input type="name" name="name" />
+          </div>
 
-        {/* Password */}
-        <div>
-          <label htmlFor="password">Password:  </label>
-          <input type="password" name="password" />
-        </div>
+          {/* Email */}
+          <div className="input-group">
+            <label htmlFor="email">Email:  </label>
+            <input type="email" name="email" />
+          </div>
 
-        {/* button */}
-        <button>Register</button>
-      </form>
-    </div>
+          {/* Password */}
+          <div className="input-group">
+            <label htmlFor="password">Password:  </label>
+            <input type="password" name="password" />
+          </div>
+
+          {/* button */}
+          <button className="form_action-btn">Register</button>
+        </form>
+        </div>
+      </main>
+    </>
   )
 }
 

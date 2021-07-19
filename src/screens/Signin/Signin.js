@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Signin = () => {
   const history = useHistory()
-  if(localStorage.getItem('token')) {
+  if (localStorage.getItem('token')) {
     setTimeout(() => {
       window.flash('You are logged in', 'warning')
     }, 100)
@@ -19,7 +19,7 @@ const Signin = () => {
     if (!email || !password) window.flash('All fields are required', 'error')
     else {
       try {
-        let user = await getToken({email, password})
+        let user = await getToken({ email, password })
         localStorage.setItem('token', user.data.token)
         localStorage.setItem('name', user.data.user.name)
         localStorage.setItem('email', user.data.user.email)
@@ -28,8 +28,8 @@ const Signin = () => {
         }, 100)
         // history.push('/dashboard')
       } catch (error) {
-        error.message = 'Request failed with status code 400' ? 
-          window.flash('Invalid email or password', 'error') : 
+        error.message = 'Request failed with status code 400' ?
+          window.flash('Invalid email or password', 'error') :
           window.flash(error.message, 'error')
       }
     }
@@ -47,30 +47,44 @@ const Signin = () => {
   }
 
   return (
-    <div>
+    <>
       <Navbar />
       <Flash />
-      Signin Page
-      <form action="" onSubmit={handleClick} style={formWidth}>
-        {/* Email */}
-        <div>
-          <label htmlFor="email">Email:  </label>
-          <input type="email" name="email" />
-        </div>
+      <main>
+        <div className="signin_main-content auth-page">
+          <h1>Sign in</h1>
 
-        {/* Password */}
-        <div>
-          <label htmlFor="password">Password:  </label>
-          <input type="password" name="password" />
-          <a className="forgot-password" href="">
+          <div className="auth-options">
+            <a>Continue with facebook</a>
+            <a>Continue with Google</a>
+          </div>
+
+          <span aria-hidden="true" style={{marginBottom: '18px'}}>OR</span>
+
+          <form action="" onSubmit={handleClick} style={formWidth}>
+            {/* Email */}
+            <div className="input-group">
+              {/* <label htmlFor="email">Email:  </label> */}
+              <input type="email" name="email" placeholder="Email:" />
+            </div>
+
+            {/* Password */}
+            <div className="input-group">
+              {/* <label htmlFor="password">Password:  </label> */}
+              <input type="password" name="password" placeholder="Password:" />
+              <a className="forgot_password-link" href="">
               Forgot password?
             </a>
-        </div>
+            </div>
+            
+            {/* button */}
+            <button className="form_action-btn">Log in</button>
+          </form>
 
-        {/* button */}
-        <button>Login</button>
-      </form>
-    </div>
+          <div>You don't have an account? <a>Sign up</a> </div>
+        </div>
+      </main>
+    </>
   )
 }
 
