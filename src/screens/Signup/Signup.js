@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useHistory, Link } from "react-router-dom"
 import { createUser, getToken } from "../../utils/auth"
 import Navbar from '../../components/Navbar'
@@ -12,6 +13,8 @@ const Signup = () => {
     }, 100)
     history.push('/dashboard')
   }
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleClick = async e => {
     e.preventDefault()
     let name = e.target.name.value
@@ -20,6 +23,7 @@ const Signup = () => {
     if (!email || !name || !password) window.flash('All fields are required', 'error')
     else {
       try {
+        setIsLoading(true)
         await createUser({ name, email, password })
         let user = await getToken({ email, password })
         localStorage.setItem('token', user.data.token)
@@ -28,8 +32,10 @@ const Signup = () => {
         setTimeout(() => {
           window.flash('Logged in successfully', 'success')
         }, 100)
+        setIsLoading(false)
         history.push('/dashboard')
       } catch (error) {
+        setIsLoading(false)
         console.log(error.message)
         error.message = 'Request failed with status code 409' ?
           window.flash('Email chosen', 'error') :
@@ -82,7 +88,7 @@ const Signup = () => {
             </div>
 
             {/* button */}
-            <button className="form_action-btn">Register</button>
+            <button disabled={isLoading ? true : false} className="form_action-btn">{isLoading ? 'Creating account' : 'Register'}</button>
           </form>
           <div>Have an account? <Link to="/login">Sign in</Link> </div>
         </div>
