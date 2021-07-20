@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useHistory, Link } from "react-router-dom"
 import { getToken } from "../../utils/auth"
 import Navbar from '../../components/Navbar'
@@ -6,6 +7,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Signin = () => {
   const history = useHistory()
+  const [isLoading, setIsLoading] = useState(false)
   if (localStorage.getItem('token')) {
     setTimeout(() => {
       window.flash('You are logged in', 'warning')
@@ -19,6 +21,7 @@ const Signin = () => {
     if (!email || !password) window.flash('All fields are required', 'error')
     else {
       try {
+        setIsLoading(true)
         let user = await getToken({ email, password })
         localStorage.setItem('token', user.data.token)
         localStorage.setItem('name', user.data.user.name)
@@ -26,12 +29,14 @@ const Signin = () => {
         setTimeout(() => {
           window.flash('Logged in successfully', 'success')
         }, 100)
+        setIsLoading(false)
         history.push('/dashboard')
       } catch (error) {
         console.log(error.message)
-          error.message = 'Request failed with status code 400' ?
-          window.flash('Invalid email or password', 'error') :
-          window.flash(error.message, 'error')
+        setIsLoading(false)
+        error.message = 'Request failed with status code 400' ?
+        window.flash('Invalid email or password', 'error') :
+        window.flash(error.message, 'error')
       }
     }
   }
@@ -79,7 +84,7 @@ const Signin = () => {
             </div>
             
             {/* button */}
-            <button className="form_action-btn">Log in</button>
+            <button className="form_action-btn" disabled={isLoading ? true : false}>{isLoading ? 'Signing In' : 'Log in'}</button>
           </form>
 
           <div>You don't have an account? <Link to="/register">Sign up</Link> </div>
