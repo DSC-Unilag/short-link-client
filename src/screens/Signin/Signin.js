@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { getToken } from "../../utils/auth"
 import Navbar from '../../components/Navbar'
 import { Flash } from "../../components/Flash/flash"
@@ -54,12 +54,12 @@ const Signin = () => {
         <div className="signin_main-content auth-page">
           <h1>Sign in</h1>
 
-          <div className="auth-options">
-            <a>Continue with facebook</a>
-            <a>Continue with Google</a>
+          {/* <div className="auth-options">
+            <button>Continue with facebook</button>
+            <button>Continue with Google</button>
           </div>
 
-          <span aria-hidden="true" style={{marginBottom: '18px'}}>OR</span>
+          <span aria-hidden="true" style={{marginBottom: '18px'}}>OR</span> */}
 
           <form action="" onSubmit={handleClick} style={formWidth}>
             {/* Email */}
@@ -72,16 +72,16 @@ const Signin = () => {
             <div className="input-group">
               {/* <label htmlFor="password">Password:  </label> */}
               <input type="password" name="password" placeholder="Password:" />
-              <a className="forgot_password-link" href="">
-              Forgot password?
-            </a>
+              {/* <Link className="forgot_password-link" href="">
+                Forgot password?
+              </Link> */}
             </div>
             
             {/* button */}
             <button className="form_action-btn">Log in</button>
           </form>
 
-          <div>You don't have an account? <a>Sign up</a> </div>
+          <div>You don't have an account? <Link to="/register">Sign up</Link> </div>
         </div>
       </main>
     </>

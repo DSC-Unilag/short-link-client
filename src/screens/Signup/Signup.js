@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { createUser, getToken } from "../../utils/auth"
 import Navbar from '../../components/Navbar'
 import { Flash } from "../../components/Flash/flash"
@@ -54,36 +54,37 @@ const Signup = () => {
       <Flash />
       <main>
         <div className="signup_main-content auth-page">
-        <h1>Sign up</h1>
-        <div className="auth-options">
+          <h1>Sign up</h1>
+          {/* <div className="auth-options">
             <a>Continue with facebook</a>
             <a>Continue with Google</a>
           </div>
-          
-          <span aria-hidden="true" style={{marginBottom: '18px'}}>OR</span>
+            
+          <span aria-hidden="true" style={{marginBottom: '18px'}}>OR</span> */}
 
-        <form action="" onSubmit={handleClick} style={formWidth}>
-          {/* Name */}
-          <div className="input-group">
-            <label htmlFor="name">Full Name:  </label>
-            <input type="name" name="name" />
-          </div>
+          <form action="" onSubmit={handleClick} style={formWidth}>
+            {/* Name */}
+            <div className="input-group">
+              <label htmlFor="name">Full Name:  </label>
+              <input type="name" name="name" />
+            </div>
 
-          {/* Email */}
-          <div className="input-group">
-            <label htmlFor="email">Email:  </label>
-            <input type="email" name="email" />
-          </div>
+            {/* Email */}
+            <div className="input-group">
+              <label htmlFor="email">Email:  </label>
+              <input type="email" name="email" />
+            </div>
 
-          {/* Password */}
-          <div className="input-group">
-            <label htmlFor="password">Password:  </label>
-            <input type="password" name="password" />
-          </div>
+            {/* Password */}
+            <div className="input-group">
+              <label htmlFor="password">Password:  </label>
+              <input type="password" name="password" />
+            </div>
 
-          {/* button */}
-          <button className="form_action-btn">Register</button>
-        </form>
+            {/* button */}
+            <button className="form_action-btn">Register</button>
+          </form>
+          <div>Have an account? <Link to="/login">Sign in</Link> </div>
         </div>
       </main>
     </>
