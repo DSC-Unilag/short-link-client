@@ -26,9 +26,10 @@ const Signin = () => {
         setTimeout(() => {
           window.flash('Logged in successfully', 'success')
         }, 100)
-        // history.push('/dashboard')
+        history.push('/dashboard')
       } catch (error) {
-        error.message = 'Request failed with status code 400' ?
+        console.log(error.message)
+          error.message = 'Request failed with status code 400' ?
           window.flash('Invalid email or password', 'error') :
           window.flash(error.message, 'error')
       }
